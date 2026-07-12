@@ -110,6 +110,21 @@
       </div>
     </section>
 
+    <!-- Office door QR code -->
+    <section class="dashboard-card" id="qrSection" style="display: none;">
+      <h2>My Office Door QR Code</h2>
+      <p class="form-subtitle">
+        Print this and stick it on your office door. Students can scan it
+        with their phone camera to instantly see whether you're available
+        right now and your full weekly schedule — no app needed.
+      </p>
+
+      <div class="qr-code-box">
+        <div id="qrCodeCanvas"></div>
+        <button type="button" id="downloadQrBtn" class="small-btn">Download QR Code</button>
+      </div>
+    </section>
+
     <!-- Add office hours section -->
     <section class="dashboard-card office-hours-form-card">
       <h2>Add Office Hours</h2>
@@ -214,6 +229,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="firebase-config.js"></script>
   <script src="faculty.js"></script>
 </body>

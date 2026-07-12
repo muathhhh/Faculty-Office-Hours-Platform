@@ -22,6 +22,7 @@ Originally built as a graduation project at King Khalid University, College of C
 
 ### For Students
 - **Ask the Office Hours Assistant** — a rule-based natural language engine (no external AI API, zero cost) that answers free-form questions like *"When is Dr. Ahmad available?"* or *"Who is free today in Computer Science?"* in English or Arabic, by extracting the faculty name, weekday, and department from the sentence and reasoning over the live schedule data.
+- **Live "Available now" status** — every faculty card shows a real-time green/gray badge computed from the current time against that instructor's schedule, refreshing automatically every minute.
 - **Smart fuzzy search** (Fuse.js) — finds the right instructor even with typos or partial names.
 - **Interactive weekly calendar** — visual, color-coded timetable of any faculty member's office hours.
 
@@ -31,6 +32,7 @@ Originally built as a graduation project at King Khalid University, College of C
   - a **room conflict**, if another faculty member already booked that room at an overlapping time,
   - a **self conflict**, if the same faculty member already has an overlapping slot elsewhere (can't be in two places at once),
   - and if a conflict is found, it **suggests the next available time slot** in that room automatically.
+- **Office door QR code** — every faculty member gets a personal QR code (generated client-side, downloadable as PNG) that links to a public live-status page. Print it and stick it on your office door: students scan it with their phone camera and instantly see whether you're in right now, with no app or login friction on your end.
 
 ### For Admins
 - Full user and role management (promote/demote student, faculty, admin — safely, see [Security](#-security) below)
@@ -114,9 +116,9 @@ firebase deploy
 
 ## 🗺 Roadmap
 
+- [x] Live "available now" status badge on faculty cards
+- [x] Per-faculty QR code linking to a live status page
 - [ ] Natural-language office hours entry for faculty (extend the existing NLU engine to parse free-text schedule input)
-- [ ] Live "available now" status badge on faculty cards
-- [ ] Per-faculty QR code linking to a live status page
 - [ ] Digital queue system for high-traffic periods (e.g. exam weeks)
 - [ ] `.ics` calendar export for students
 - [ ] Mobile app wrapper

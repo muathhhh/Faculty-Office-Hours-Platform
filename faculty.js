@@ -167,12 +167,54 @@ function showProfileInfo() {
   if (editProfileBtn) editProfileBtn.style.display = "inline-block";
 
   setText(profileMessage, "");
+  generateOfficeDoorQrCode();
 }
 
 function showProfileForm() {
   if (facultyProfileForm) facultyProfileForm.style.display = "block";
   if (facultyProfileInfo) facultyProfileInfo.style.display = "none";
   if (editProfileBtn) editProfileBtn.style.display = "none";
+
+  const qrSection = document.getElementById("qrSection");
+  if (qrSection) qrSection.style.display = "none";
+}
+
+/* ---------- Office Door QR Code ---------- */
+function generateOfficeDoorQrCode() {
+  if (!currentUser || typeof QRCode === "undefined") return;
+
+  const qrSection = document.getElementById("qrSection");
+  const qrCodeCanvas = document.getElementById("qrCodeCanvas");
+  if (!qrSection || !qrCodeCanvas) return;
+
+  qrSection.style.display = "block";
+  qrCodeCanvas.innerHTML = "";
+
+  const statusPageUrl =
+    window.location.origin + "/faculty-status.html?id=" + currentUser.uid;
+
+  new QRCode(qrCodeCanvas, {
+    text: statusPageUrl,
+    width: 180,
+    height: 180,
+    colorDark: "#16231c",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+
+const downloadQrBtn = document.getElementById("downloadQrBtn");
+if (downloadQrBtn) {
+  downloadQrBtn.addEventListener("click", function () {
+    const qrCodeCanvas = document.getElementById("qrCodeCanvas");
+    const canvas = qrCodeCanvas ? qrCodeCanvas.querySelector("canvas") : null;
+    if (!canvas) return;
+
+    const link = document.createElement("a");
+    link.download = "office-door-qr-code.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
 }
 
 async function loadFacultyProfile() {
