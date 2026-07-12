@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Office Hours</title>
+  <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo-box">
+      <div class="logo-icon">🎓</div>
+      <span>Faculty Office Hours</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#features">Features</a>
+      <a href="#footer">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="welcome">Welcome to the Faculty Office Hours Platform</p>
+
+      <h1>Smart and easy access to updated office hours anytime.</h1>
+
+      <div class="hero-buttons">
+        <a href="#features" class="btn primary">Get Started →</a>
+        <a href="login.html" class="btn secondary">Login</a>
+      </div>
+
+      <div class="stats">
+        <div>
+          <h3>500+</h3>
+          <p>Faculty Members</p>
+        </div>
+
+        <div>
+          <h3>15+</h3>
+          <p>Departments</p>
+        </div>
+
+        <div>
+          <h3>24/7</h3>
+          <p>Access</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80"
+        alt="calendar"
+      />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <h2>Platform Features</h2>
+
+    <p class="section-subtitle">
+      Everything you need to manage and access faculty office hours efficiently
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>AI Smart Search</h3>
+        <p>
+          Find faculty by name with intelligent search capabilities.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Live Updates</h3>
+        <p>
+          Get real-time notifications about office hour changes and updates.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Organized Calendar</h3>
+        <p>
+          View all office hours in an organized weekly calendar format.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon special">⚡</div>
+        <h3>Fast Access</h3>
+        <p>
+          Quick and centralized access to all instructors across departments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-left">
+      <div class="footer-logo">🎓</div>
+      <div>
+        <h4>Faculty Office Hours</h4>
+        <p>© 2025 University Platform</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

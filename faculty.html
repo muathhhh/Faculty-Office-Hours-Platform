@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Faculty Dashboard</h1>
+
+      <div class="header-nav">
+        <a href="faculty.html" class="small-btn">Dashboard</a>
+        <a href="notifications.html" class="small-btn">Notifications</a>
+      </div>
+    </div>
+
+    <a href="#" onclick="logout()" class="small-btn logout-btn">Logout</a>
+  </header>
+
+  <main class="dashboard-container">
+    <!-- Faculty profile section -->
+    <section class="dashboard-card faculty-profile-card">
+      <h2>Faculty Profile</h2>
+
+      <form id="facultyProfileForm" class="office-hours-form">
+        <div class="form-grid">
+          <div>
+            <label for="profileName">Full Name</label>
+            <input
+              type="text"
+              id="profileName"
+              placeholder="Enter your full name"
+            />
+          </div>
+
+          <div>
+            <label for="profileDepartment">Department</label>
+            <select id="profileDepartment">
+              <option value="">Select department</option>
+              <option>Computer Science</option>
+              <option>Computer Engineering</option>
+              <option>Information Systems</option>
+              <option>Cybersecurity</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="profileContactEmail">Contact Email (Optional)</label>
+            <input
+              type="email"
+              id="profileContactEmail"
+              placeholder="Enter contact email for students"
+            />
+          </div>
+
+          <div>
+            <label>Building</label>
+            <input type="text" value="B13" disabled />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="login-btn add-btn">Save Profile</button>
+        </div>
+      </form>
+
+      <p id="profileMessage" class="faculty-form-message"></p>
+
+      <div id="facultyProfileInfo" class="faculty-profile-info" style="display: none;">
+        <div class="profile-item">
+          <span class="profile-label">Name:</span>
+          <span id="facultyName"></span>
+        </div>
+
+        <div class="profile-item">
+          <span class="profile-label">Login Email:</span>
+          <span id="facultyEmail"></span>
+        </div>
+
+        <div class="profile-item">
+          <span class="profile-label">Department:</span>
+          <span id="facultyDepartment"></span>
+        </div>
+
+        <div class="profile-item">
+          <span class="profile-label">Contact Email:</span>
+          <span id="facultyContactEmail"></span>
+        </div>
+
+        <div class="profile-item">
+          <span class="profile-label">Building:</span>
+          <span>B13</span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          id="editProfileBtn"
+          class="small-btn"
+          style="display: none;"
+        >
+          Edit Profile
+        </button>
+      </div>
+    </section>
+
+    <!-- Add office hours section -->
+    <section class="dashboard-card office-hours-form-card">
+      <h2>Add Office Hours</h2>
+      <p class="form-subtitle">Add your available office hours for students.</p>
+
+      <form id="officeHoursForm" class="office-hours-form">
+        <div class="form-grid">
+          <div>
+            <label for="officeNote">Note (Optional)</label>
+            <input
+              type="text"
+              id="officeNote"
+              placeholder="e.g. General questions, project discussion..."
+            />
+          </div>
+
+          <div>
+            <label for="officeDay">Day</label>
+            <select id="officeDay" required>
+              <option value="">Select day</option>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="startTime">Start Time</label>
+            <input type="time" id="startTime" required />
+          </div>
+
+          <div>
+            <label for="endTime">End Time</label>
+            <input type="time" id="endTime" required />
+          </div>
+
+          <div>
+            <label for="officeRoom">Room / Location</label>
+            <input
+              type="text"
+              id="officeRoom"
+              placeholder="e.g. B13 - Room 203"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="login-btn add-btn">Add Office Hour</button>
+          <button type="button" onclick="resetOfficeHours()" class="reset-btn">
+            Reset Data
+          </button>
+        </div>
+      </form>
+
+      <p id="facultyFormMessage" class="faculty-form-message"></p>
+    </section>
+
+    <!-- Manual notification section -->
+    <section class="dashboard-card">
+      <h2>Send Notification</h2>
+      <p class="form-subtitle">
+        Write a manual notification to inform students about updates.
+      </p>
+
+      <form id="notificationForm" class="office-hours-form">
+        <div class="form-grid">
+          <div style="grid-column: 1 / -1;">
+            <label for="notificationText">Notification Message</label>
+            <input
+              type="text"
+              id="notificationText"
+              placeholder="e.g. Office hours on Tuesday have been moved to 2:00 PM"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="login-btn add-btn">Send Notification</button>
+        </div>
+      </form>
+
+      <p id="notificationMessage" class="faculty-form-message"></p>
+    </section>
+
+    <!-- Faculty office hours list -->
+    <section class="dashboard-card office-hours-list-card">
+      <div class="results-header">
+        <h2>My Office Hours</h2>
+        <p id="officeHoursCount">0 office hour entries</p>
+      </div>
+
+      <div id="officeHoursList" class="office-hours-list">
+        <!-- Office hour cards appear here -->
+      </div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="faculty.js"></script>
+</body>
+</html>

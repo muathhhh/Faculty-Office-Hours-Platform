@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Notifications</h1>
+
+      <!-- Navigation is rendered dynamically based on the user role -->
+      <div class="header-nav" id="notificationsNav">
+        <!-- Navigation links appear here -->
+      </div>
+    </div>
+
+    <a
+      href="#"
+      onclick="logout()"
+      class="small-btn logout-btn"
+      id="notificationsLogout"
+    >
+      Logout
+    </a>
+  </header>
+
+  <main class="dashboard-container">
+    <!-- Intro section -->
+    <section class="dashboard-card">
+      <h2>Recent Updates</h2>
+      <p>Here you can see the latest office hour changes and announcements.</p>
+    </section>
+
+    <!-- Notifications list -->
+    <section class="dashboard-card">
+      <div id="notificationsList" class="notifications-list">
+        <!-- Notifications appear here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Admin Dashboard</h1>
+      <div class="header-nav">
+        <button class="small-btn" onclick="showAdminSection('overviewSection')">Overview</button>
+        <button class="small-btn" onclick="showAdminSection('usersSection')">Users</button>
+        <button class="small-btn" onclick="showAdminSection('notificationsSection')">Notifications</button>
+        <button class="small-btn" onclick="showAdminSection('officeHoursSection')">Office Hours</button>
+        <button class="small-btn" onclick="showAdminSection('logsSection')">Logs</button>
+      </div>
+    </div>
+
+    <button onclick="logout()" class="small-btn logout-btn">Logout</button>
+  </header>
+
+  <main class="dashboard-container">
+
+    <!-- Overview -->
+    <section id="overviewSection" class="dashboard-card admin-section">
+      <div class="results-header">
+        <h2>System Overview</h2>
+        <p>Quick statistics for the whole platform.</p>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <h3 id="totalUsersCount">0</h3>
+          <p>Total Users</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3 id="totalStudentsCount">0</h3>
+          <p>Students</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3 id="totalFacultyCount">0</h3>
+          <p>Faculty</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3 id="totalAdminsCount">0</h3>
+          <p>Admins</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3 id="totalNotificationsCount">0</h3>
+          <p>Notifications</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3 id="totalOfficeHoursCount">0</h3>
+          <p>Office Hours</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users -->
+    <section id="usersSection" class="dashboard-card admin-section" style="display: none;">
+      <div class="results-header">
+        <h2>Users Management</h2>
+        <p>View users, update roles, or delete accounts.</p>
+      </div>
+
+      <div id="usersList" class="admin-list-grid"></div>
+    </section>
+
+    <!-- Notifications -->
+    <section id="notificationsSection" class="dashboard-card admin-section" style="display: none;">
+      <div class="results-header">
+        <h2>Notifications Management</h2>
+        <p>Create, edit, or delete platform notifications.</p>
+      </div>
+
+      <div class="admin-form-box">
+        <label for="notificationInput"><strong>Notification Message</strong></label>
+        <input
+          id="notificationInput"
+          type="text"
+          placeholder="Write a notification message"
+          class="admin-input"
+        />
+
+        <div class="admin-actions-row">
+          <button onclick="addNotification()" class="small-btn">Send Notification</button>
+        </div>
+      </div>
+
+      <div id="notificationsList" class="admin-list-grid"></div>
+    </section>
+
+    <!-- Office Hours -->
+    <section id="officeHoursSection" class="dashboard-card admin-section" style="display: none;">
+      <div class="results-header">
+        <h2>Office Hours Management</h2>
+        <p>View and delete office hours created by faculty members.</p>
+      </div>
+
+      <div class="admin-actions-row" style="margin-bottom: 20px;">
+        <button onclick="deleteAllOfficeHours()" class="reset-btn">Delete All Office Hours</button>
+      </div>
+
+      <div id="officeHoursAdminList" class="admin-list-grid"></div>
+    </section>
+
+    <!-- Logs -->
+    <section id="logsSection" class="dashboard-card admin-section" style="display: none;">
+      <div class="results-header">
+        <h2>System Logs</h2>
+        <p>Track important admin actions performed in the system.</p>
+      </div>
+
+      <div id="logsList" class="admin-list-grid"></div>
+    </section>
+
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html> 

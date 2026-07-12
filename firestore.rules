@@ -1,0 +1,92 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ---------- Helper Functions ---------- */
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function getUserData(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getUserData(request.auth.uid).role == 'admin';
+    }
+
+    function isFaculty() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getUserData(request.auth.uid).role == 'faculty';
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    /* ---------- Users Collection ---------- */
+    match /users/{userId} {
+
+      // Any signed-in user can read profiles (needed for student search + faculty listing)
+      allow read: if isSignedIn();
+
+      // A user can create their own profile ONLY during registration,
+      // and can NEVER set their own role to "admin" (prevents privilege escalation)
+      allow create: if isOwner(userId) &&
+        request.resource.data.role in ['student', 'faculty'];
+
+      // A user can update their own profile, but cannot change their own role.
+      // Admins can update anyone (including roles).
+      allow update: if isAdmin() ||
+        (isOwner(userId) && request.resource.data.role == resource.data.role);
+
+      // Only admins can delete user accounts
+      allow delete: if isAdmin();
+    }
+
+    /* ---------- Office Hours Collection ---------- */
+    match /officeHours/{docId} {
+
+      // Any signed-in user can view office hours
+      allow read: if isSignedIn();
+
+      // Only faculty can create office hours, and only under their own userId
+      allow create: if isFaculty() &&
+        request.resource.data.userId == request.auth.uid;
+
+      // Faculty can update/delete only their own entries. Admins can manage all.
+      allow update, delete: if isAdmin() ||
+        (isFaculty() && resource.data.userId == request.auth.uid);
+    }
+
+    /* ---------- Notifications Collection ---------- */
+    match /notifications/{docId} {
+
+      // Any signed-in user can read notifications
+      allow read: if isSignedIn();
+
+      // Faculty and admins can create notifications
+      allow create: if isFaculty() || isAdmin();
+
+      // Only admins can edit or delete notifications
+      allow update, delete: if isAdmin();
+    }
+
+    /* ---------- Logs Collection (Admin actions only) ---------- */
+    match /logs/{docId} {
+
+      // Only admins can read or write logs
+      allow read, write: if isAdmin();
+    }
+
+    /* ---------- Default: deny everything else ---------- */
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Faculty Office Hours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-card">
+
+      <!-- Logo -->
+      <div class="login-logo">🎓</div>
+
+      <h2>Office Hours Platform</h2>
+      <p id="formTitle">Login to your account</p>
+
+      <form id="authForm">
+
+        <!-- Email -->
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email (Gmail or KKU)"
+          required
+        />
+
+        <!-- Password -->
+        <label for="password">Password</label>
+<input
+  id="password"
+  type="password"
+  placeholder="Enter your password"
+  required
+/>
+
+<p style="font-size: 12px; color: #888; margin-top: 8px;">
+  Password must be 8-20 characters and include letters, numbers, and symbols.
+</p>
+
+        <!-- Extra Fields (Register only) -->
+        <div id="extraFields" style="display: none;">
+
+          <label for="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter your full name"
+          />
+
+          <label for="role">Role</label>
+          <select id="role">
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+          </select>
+
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="login-btn" id="submitBtn">Login</button>
+
+      </form>
+
+      <!-- Message -->
+      <p id="loginMessage" class="login-message"></p>
+
+      <!-- Info Note -->
+      <p style="font-size: 12px; color: #888; margin-top: 10px;">
+        Only Gmail and KKU email addresses are allowed for registration.
+      </p>
+
+      <!-- Toggle -->
+      <p class="forgot-link" style="margin-top: 18px;">
+        Don't have an account?
+        <a href="#" id="toggleMode">Create Account (Register)</a>
+      </p>
+
+      <!-- Back -->
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- Script -->
+  <script src="firebase-config.js"></script>
+  <script src="login.js"></script>
+
+</body>
+</html>

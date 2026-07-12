@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Student Dashboard</h1>
+
+      <div class="header-nav">
+        <a href="student.html" class="small-btn">Dashboard</a>
+        <a href="notifications.html" class="small-btn">Notifications</a>
+      </div>
+    </div>
+
+    <a href="#" onclick="logout()" class="small-btn logout-btn">Logout</a>
+  </header>
+
+  <main class="dashboard-container">
+    <!-- Welcome section -->
+    <section class="dashboard-card">
+      <h2>Welcome Student</h2>
+      <p>Search for faculty members and view their real office hours.</p>
+    </section>
+
+    <!-- AI Ask Assistant -->
+    <section class="dashboard-card ask-assistant-card">
+      <h2>Ask the Office Hours Assistant</h2>
+      <p class="form-subtitle">
+        Ask in your own words — e.g. "When is Dr. Ahmad available?" or
+        "Who is free today in Computer Science?"
+      </p>
+
+      <div class="ask-assistant-controls">
+        <input
+          type="text"
+          id="askAssistantInput"
+          placeholder="Type your question..."
+        />
+        <button type="button" id="askAssistantBtn" class="login-btn add-btn">Ask</button>
+      </div>
+
+      <div id="askAssistantAnswer" class="ask-assistant-answer" style="display: none;"></div>
+    </section>
+
+    <!-- Search section -->
+    <section class="search-panel">
+      <h2>Smart Search</h2>
+      <p class="search-subtitle">Search by faculty name.</p>
+
+      <div class="search-controls">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by faculty name"
+        />
+
+        <select id="departmentFilter">
+          <option value="all">All Departments</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Computer Engineering">Computer Engineering</option>
+          <option value="Information Systems">Information Systems</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Faculty cards section -->
+    <section class="faculty-results">
+      <div class="results-header">
+        <h2>Faculty Office Hours</h2>
+        <p id="resultsCount">Loading faculty data...</p>
+      </div>
+
+      <div class="faculty-grid" id="facultyList">
+        <!-- Faculty cards appear here -->
+      </div>
+    </section>
+
+    <!-- Weekly calendar section -->
+    <section class="dashboard-card calendar-panel">
+      <div class="results-header">
+        <h2>Interactive Weekly Calendar</h2>
+        <p>Select a faculty member to view office hours in timetable format.</p>
+      </div>
+
+     <div class="calendar-controls">
+  <input
+    type="text"
+    id="calendarSearchInput"
+    placeholder="Search faculty for calendar"
+    class="admin-input"
+  />
+
+  <select id="calendarFacultySelect">
+    <option value="">Select Faculty</option>
+  </select>
+</div>
+
+      <div class="calendar-wrapper">
+        <table class="weekly-calendar" id="weeklyCalendar">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody">
+            <!-- Calendar rows appear here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- Fuse.js for smart search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="student.js"></script>
+</body>
+</html>
